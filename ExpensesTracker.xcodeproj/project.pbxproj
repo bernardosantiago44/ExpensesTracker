@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D12FCF3C2CCFF53E0038DE3A /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = D12FCF3B2CCFF53E0038DE3A /* Auth */; };
+		D12FCF3E2CCFF53E0038DE3A /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = D12FCF3D2CCFF53E0038DE3A /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		D12FCF1E2CCFF42A0038DE3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D12FCF3E2CCFF53E0038DE3A /* Supabase in Frameworks */,
+				D12FCF3C2CCFF53E0038DE3A /* Auth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = ExpensesTracker;
 			packageProductDependencies = (
+				D12FCF3B2CCFF53E0038DE3A /* Auth */,
+				D12FCF3D2CCFF53E0038DE3A /* Supabase */,
 			);
 			productName = ExpensesTracker;
 			productReference = D12FCF0D2CCFF4290038DE3A /* ExpensesTracker.app */;
@@ -195,6 +204,9 @@
 			);
 			mainGroup = D12FCF042CCFF4290038DE3A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D12FCF3A2CCFF53E0038DE3A /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D12FCF0E2CCFF4290038DE3A /* Products */;
 			projectDirPath = "";
@@ -558,6 +570,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D12FCF3A2CCFF53E0038DE3A /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D12FCF3B2CCFF53E0038DE3A /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D12FCF3A2CCFF53E0038DE3A /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		D12FCF3D2CCFF53E0038DE3A /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D12FCF3A2CCFF53E0038DE3A /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D12FCF052CCFF4290038DE3A /* Project object */;
 }
