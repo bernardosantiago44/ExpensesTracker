@@ -19,6 +19,9 @@
         }
       }
     },
+    "Error" : {
+
+    },
     "hello" : {
       "comment" : "Hello label in the authentication screen.",
       "extractionState" : "manual",
