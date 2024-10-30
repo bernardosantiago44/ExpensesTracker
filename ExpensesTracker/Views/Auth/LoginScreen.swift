@@ -11,9 +11,10 @@ import AuthenticationServices
 struct LoginScreen: View {
     @Bindable var viewModel: AuthenticationViewModel
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.settings) private var settings
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack {
             Text("login")
                 .font(.title)
                 .fontWeight(.semibold)
@@ -22,12 +23,36 @@ struct LoginScreen: View {
             TextField(text: $viewModel.username) {
                 Label("email", systemImage: "envelope")
             }
+            .textFieldStyle(RoundedTextFieldStyle())
+            .keyboardType(.emailAddress)
+            .textContentType(.emailAddress)
+            .textInputAutocapitalization(.never)
             
-            TextField(text: $viewModel.password) {
-                Label("password", systemImage: "key")
+            HStack {
+                if viewModel.isShowingPassword {
+                    TextField(text: $viewModel.password) {
+                        Label("password", systemImage: "key")
+                    }
+                } else {
+                    SecureField(text: $viewModel.password) {
+                        Label("password", systemImage: "key")
+                    }
+                }
             }
+            .textFieldStyle(RoundedTextFieldStyle())
+            .textContentType(.password)
+            .textInputAutocapitalization(.never)
             
-            Button("login") {}
+            
+            Button(action: {
+                
+            }, label: {
+                Text("login")
+                    .frame(maxWidth: .infinity, alignment: .center)
+            })
+            .buttonStyle(PrimaryRoundedButtonStyle(color: settings.selectedAccentColor))
+            .disabled(!viewModel.isValid)
+            
             Divider()
             HStack {
                 SignInWithAppleButton(.signIn) { request in

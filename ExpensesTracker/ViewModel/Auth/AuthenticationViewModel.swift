@@ -10,6 +10,7 @@ import Foundation
 @Observable class AuthenticationViewModel {
     var username: String = ""
     var password: String = ""
+    var isShowingPassword = false
     var isValid: Bool {
         username.count > 0 && password.count >= 6
     }
