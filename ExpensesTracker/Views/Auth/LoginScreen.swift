@@ -44,14 +44,7 @@ struct LoginScreen: View {
             .textInputAutocapitalization(.never)
             
             
-            Button(action: {
-                
-            }, label: {
-                Text("login")
-                    .frame(maxWidth: .infinity, alignment: .center)
-            })
-            .buttonStyle(PrimaryRoundedButtonStyle(color: settings.selectedAccentColor))
-            .disabled(!viewModel.isValid)
+            LoginButton()
             
             Divider()
             HStack {
@@ -66,6 +59,29 @@ struct LoginScreen: View {
             
         }
         .padding(.horizontal)
+        .alert(Text("Error"), isPresented: $viewModel.showErrorMessage) {
+            
+        } message: {
+            Text(viewModel.errorMessage)
+        }
+
+    }
+    
+    @ViewBuilder func LoginButton() -> some View {
+        if self.viewModel.isBusy {
+            ProgressView()
+        } else {
+            Button(action: {
+                Task {
+                    await viewModel.login()
+                }
+            }, label: {
+                Text("login")
+                    .frame(maxWidth: .infinity, alignment: .center)
+            })
+            .buttonStyle(PrimaryRoundedButtonStyle(color: settings.selectedAccentColor))
+            .disabled(!viewModel.isValid)
+        }
     }
 }
 

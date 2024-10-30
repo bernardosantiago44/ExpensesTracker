@@ -8,7 +8,14 @@
 import Foundation
 import Supabase
 
-let supabase = SupabaseClient(
-    supabaseURL: SUPABASE_URL,
-    supabaseKey: SUPABASE_ANON_KEY
-)
+class SupabaseInstance {
+    // Prevent instantiation
+    private init() {}
+    
+    let client = SupabaseClient(supabaseURL: SUPABASE_URL,
+                              supabaseKey: SUPABASE_ANON_KEY)
+}
+
+extension SupabaseInstance {
+    static let shared = SupabaseInstance()
+}
