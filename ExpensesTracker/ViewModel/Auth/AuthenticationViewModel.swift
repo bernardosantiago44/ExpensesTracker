@@ -56,13 +56,12 @@ import Auth
         do {
             try await self.authenticateWith(email: self.username, password: self.password)
         } catch {
-            self.errorMessage = error.localizedDescription
-            self.showErrorMessage = true
+            self.handleError(error: error)
         }
     }
     
     private func logUserOut() async throws {
-        guard let user else {
+        guard user != nil else {
             throw URLError(.userAuthenticationRequired)
         }
         
@@ -77,8 +76,13 @@ import Auth
         do {
             try await logUserOut()
         } catch {
-            self.errorMessage = error.localizedDescription
-            self.showErrorMessage = true
+            self.handleError(error: error)
         }
+    }
+    
+    // MARK: Error Handling
+    @MainActor public func handleError(error: Error) {
+        self.errorMessage = error.localizedDescription
+        self.showErrorMessage = true
     }
 }
