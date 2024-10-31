@@ -26,17 +26,21 @@ import Auth
     var user: User?
     
     init() {
+        setupAuthListener()
+    }
+    
+    deinit {
+        subscription?.remove()
+        print("Successfully removed subscription")
+    }
+    
+    private func setupAuthListener() {
         guard subscription == nil else { return }
         Task {
             subscription = await SupabaseInstance.shared.client.auth.onAuthStateChange { [weak self] event, session in
                 self?.user = session?.user
             }
         }
-    }
-    
-    deinit {
-        subscription?.remove()
-        print("Successfully removed subscription")
     }
     
     /// Authenticates the user using Supabase Auth
