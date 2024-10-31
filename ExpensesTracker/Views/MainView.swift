@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct MainView: View {
+    @Bindable var authViewModel: AuthenticationViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button("Sign Out", role: .destructive) {
+            Task {
+                await authViewModel.signOut()
+            }
+        }
+        .buttonStyle(.bordered)
+        .tint(.red)
     }
 }
 
 #Preview {
-    MainView()
+    @Previewable @State var authViewModel: AuthenticationViewModel = .init()
+    MainView(authViewModel: authViewModel)
 }

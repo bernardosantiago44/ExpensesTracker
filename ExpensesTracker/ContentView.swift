@@ -14,14 +14,15 @@ struct ContentView: View {
         Group {
             if let user = authenticationViewModel.user {
                 // Main Screen
-                Text("Hello, \(user.email ?? "User")!")
+                MainView(authViewModel: authenticationViewModel)
             } else {
                 // Authentication Screen
                 NavigationStack {
                     AuthenticationScreen(viewModel: authenticationViewModel)
                 }
             }
-        }.animation(.linear, value: authenticationViewModel.user)
+        }
+        .animation(.easeOut, value: authenticationViewModel.user)
     }
 }
 

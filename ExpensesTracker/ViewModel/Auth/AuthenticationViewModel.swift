@@ -13,7 +13,7 @@ import Auth
     @MainActor var password: String = ""
     @MainActor var isShowingPassword = false
     @MainActor var isValid: Bool {
-        username.count > 0 && password.count >= 6
+        username.isValidEmailAddress() && password.count >= 6
     }
     
     // MARK: Data flow & async logic properties
@@ -54,6 +54,19 @@ import Auth
         defer { self.isBusy = false }
         do {
             try await self.authenticateWith(email: self.username, password: self.password)
+        } catch {
+            self.errorMessage = error.localizedDescription
+            self.showErrorMessage = true
+        }
+    }
+    
+    /// Public func to sign the user out of the app.
+    /// This function handles errors thrown, if any.
+    @MainActor public func signOut() async {
+        self.isBusy = true
+        defer { self.isBusy = false }
+        do {
+            try await SupabaseInstance.shared.client.auth.signOut()
         } catch {
             self.errorMessage = error.localizedDescription
             self.showErrorMessage = true
