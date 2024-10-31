@@ -49,9 +49,26 @@ struct LoginScreen: View {
             Divider()
             HStack {
                 SignInWithAppleButton(.signIn) { request in
-                    
+                    request.requestedScopes = [.email, .fullName]
                 } onCompletion: { result in
-                    
+                    Task {
+                        do {
+                            guard let credential = try result.get().credential as? ASAuthorizationAppleIDCredential else {
+                                return
+                            }
+                            
+                            guard let idToken = credential.identityToken.flatMap({ String(data: $0, encoding: .utf8) })
+                            else {
+                                return
+                            }
+                            
+                            await viewModel.loginWithApple(credentials: .init(
+                                provider: .apple,
+                                idToken: idToken))
+                        } catch {
+                            viewModel.handleError(error: error)
+                        }
+                    }
                 }
                 .signInWithAppleButtonStyle(.black)
                 .frame(maxHeight: 50)

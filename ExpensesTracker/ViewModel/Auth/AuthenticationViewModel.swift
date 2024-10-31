@@ -60,6 +60,18 @@ import Auth
         }
     }
     
+    
+    @MainActor public func loginWithApple(credentials: OpenIDConnectCredentials) async {
+        self.isBusy = true
+        defer { self.isBusy = false }
+        
+        do {
+            try await SupabaseInstance.shared.client.auth.signInWithIdToken(credentials: credentials)
+        } catch {
+            self.handleError(error: error)
+        }
+    }
+    
     private func logUserOut() async throws {
         guard user != nil else {
             throw URLError(.userAuthenticationRequired)
