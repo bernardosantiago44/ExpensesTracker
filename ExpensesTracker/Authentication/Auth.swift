@@ -9,11 +9,13 @@ import Foundation
 import Supabase
 
 class SupabaseInstance {
-    // Prevent instantiation
-    private init() {}
+    let client: SupabaseClient
     
-    let client = SupabaseClient(supabaseURL: SUPABASE_URL,
-                              supabaseKey: SUPABASE_ANON_KEY)
+    // Prevent instantiation
+    private init() {
+        client = SupabaseClient(supabaseURL: SUPABASE_URL,
+                                supabaseKey: SUPABASE_ANON_KEY)
+    }
 }
 
 extension SupabaseInstance {

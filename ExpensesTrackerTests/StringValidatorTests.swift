@@ -9,6 +9,7 @@ import Testing
 @testable import ExpensesTracker
 
 /// Tests function validators, like email & password validation.
+@Suite("String Validator Tests")
 struct StringValidatorTests {
     
     let validEmailAddresses = [

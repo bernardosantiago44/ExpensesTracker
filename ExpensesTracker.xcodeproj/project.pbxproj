@@ -34,22 +34,9 @@
 		D12FCF272CCFF42A0038DE3A /* ExpensesTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpensesTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		D1DBF78B2CD2BD130019815B /* Exceptions for "ExpensesTracker" folder in "ExpensesTrackerTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Extensions/String+Extensions.swift",
-			);
-			target = D12FCF1C2CCFF42A0038DE3A /* ExpensesTrackerTests */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D12FCF0F2CCFF4290038DE3A /* ExpensesTracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				D1DBF78B2CD2BD130019815B /* Exceptions for "ExpensesTracker" folder in "ExpensesTrackerTests" target */,
-			);
 			path = ExpensesTracker;
 			sourceTree = "<group>";
 		};

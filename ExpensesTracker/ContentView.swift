@@ -11,9 +11,17 @@ struct ContentView: View {
     @State var authenticationViewModel: AuthenticationViewModel = .init()
     
     var body: some View {
-        NavigationStack {
-            AuthenticationScreen(viewModel: authenticationViewModel)
-        }
+        Group {
+            if let user = authenticationViewModel.user {
+                // Main Screen
+                Text("Hello, \(user.email ?? "User")!")
+            } else {
+                // Authentication Screen
+                NavigationStack {
+                    AuthenticationScreen(viewModel: authenticationViewModel)
+                }
+            }
+        }.animation(.linear, value: authenticationViewModel.user)
     }
 }
 

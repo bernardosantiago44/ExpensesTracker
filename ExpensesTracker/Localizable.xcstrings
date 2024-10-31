@@ -20,7 +20,20 @@
       }
     },
     "Error" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
     },
     "hello" : {
       "comment" : "Hello label in the authentication screen.",
@@ -36,6 +49,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hola"
+          }
+        }
+      }
+    },
+    "Hello, %@!" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hola, %@!"
           }
         }
       }

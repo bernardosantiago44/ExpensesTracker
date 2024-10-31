@@ -6,25 +6,42 @@
 //
 
 import Foundation
+import Auth
 
-@MainActor
 @Observable class AuthenticationViewModel {
-    var username: String = ""
-    var password: String = ""
-    var isShowingPassword = false
-    var isValid: Bool {
+    @MainActor var username: String = ""
+    @MainActor var password: String = ""
+    @MainActor var isShowingPassword = false
+    @MainActor var isValid: Bool {
         username.count > 0 && password.count >= 6
     }
     
     // MARK: Data flow & async logic properties
-    var isBusy = false   // Flag to show progress indicators
-    var showErrorMessage = false
-    var errorMessage = ""
+    @MainActor var isBusy = false   // Flag to show progress indicators
+    @MainActor var showErrorMessage = false
+    @MainActor var errorMessage = ""
+    
+    // MARK: - Listening for authentication changes
+    var subscription: AuthStateChangeListenerRegistration?
+    var user: User?
+    
+    init() {
+        Task {
+            subscription = await SupabaseInstance.shared.client.auth.onAuthStateChange { event, session in
+                self.user = session?.user
+            }
+        }
+    }
+    
+    deinit {
+        subscription?.remove()
+        print("Successfully removed subscription")
+    }
     
     /// Authenticates the user using Supabase Auth
     ///
-    private func authenticateWith(email: String, password: String) async throws {
-        let response = try await SupabaseInstance.shared.client.auth.signIn(
+    @MainActor private func authenticateWith(email: String, password: String) async throws {
+        try await SupabaseInstance.shared.client.auth.signIn(
             email: email,
             password: password)
     }
@@ -32,7 +49,7 @@ import Foundation
     /// Public func to pass the credentials to the Supabase Auth method.
     /// This function handles the errors thrown, if any, of the Supabase Authentication.
     ///
-    public func login() async {
+    @MainActor public func login() async {
         self.isBusy = true
         defer { self.isBusy = false }
         do {
