@@ -26,9 +26,10 @@ import Auth
     var user: User?
     
     init() {
+        guard subscription == nil else { return }
         Task {
-            subscription = await SupabaseInstance.shared.client.auth.onAuthStateChange { event, session in
-                self.user = session?.user
+            subscription = await SupabaseInstance.shared.client.auth.onAuthStateChange { [weak self] event, session in
+                self?.user = session?.user
             }
         }
     }
@@ -60,13 +61,21 @@ import Auth
         }
     }
     
+    private func logUserOut() async throws {
+        guard let user else {
+            throw URLError(.userAuthenticationRequired)
+        }
+        
+        try await SupabaseInstance.shared.client.auth.signOut()
+    }
+    
     /// Public func to sign the user out of the app.
     /// This function handles errors thrown, if any.
     @MainActor public func signOut() async {
         self.isBusy = true
         defer { self.isBusy = false }
         do {
-            try await SupabaseInstance.shared.client.auth.signOut()
+            try await logUserOut()
         } catch {
             self.errorMessage = error.localizedDescription
             self.showErrorMessage = true

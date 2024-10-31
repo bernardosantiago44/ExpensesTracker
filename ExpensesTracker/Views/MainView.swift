@@ -11,13 +11,15 @@ struct MainView: View {
     @Bindable var authViewModel: AuthenticationViewModel
     
     var body: some View {
-        Button("Sign Out", role: .destructive) {
-            Task {
-                await authViewModel.signOut()
+        TabView {
+            Tab("accounts", systemImage: "dollarsign") {
+                AccountsTab()
+            }
+            
+            Tab("settings", systemImage: "gear") {
+                SettingsTab(authViewModel: authViewModel)
             }
         }
-        .buttonStyle(.bordered)
-        .tint(.red)
     }
 }
 

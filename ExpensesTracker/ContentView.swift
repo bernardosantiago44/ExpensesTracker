@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-            if let user = authenticationViewModel.user {
+            if authenticationViewModel.user != nil {
                 // Main Screen
                 MainView(authViewModel: authenticationViewModel)
             } else {
