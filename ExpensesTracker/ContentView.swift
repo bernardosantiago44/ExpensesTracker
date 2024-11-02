@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var authenticationViewModel: AuthenticationViewModel = .init()
+    @Bindable var authenticationViewModel: AuthenticationViewModel
     
     var body: some View {
         Group {
@@ -27,5 +27,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    @Previewable @State var authenticationViewModel: AuthenticationViewModel = .init()
+    ContentView(authenticationViewModel: authenticationViewModel)
 }

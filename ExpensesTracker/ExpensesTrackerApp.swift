@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct ExpensesTrackerApp: App {
+    @State var authenticationViewModel: AuthenticationViewModel = .init()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(authenticationViewModel: self.authenticationViewModel)
         }
     }
 }

@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct AccountsTab: View {
+    @State private var viewModel = AccountsViewModel()
+    
     var body: some View {
         NavigationStack {
-            Text("accounts")
-                .fontDesign(.rounded)
-                .navigationTitle("accounts")
+            List(viewModel.accounts) { account in
+                Text(account.data)
+            }
+            .fontDesign(.rounded)
+            .navigationTitle("accounts")
+            .refreshable {
+                await viewModel.getUserAccounts()
+            }
         }
     }
 }

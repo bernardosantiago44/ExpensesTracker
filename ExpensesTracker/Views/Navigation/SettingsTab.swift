@@ -12,13 +12,18 @@ struct SettingsTab: View {
     
     var body: some View {
         NavigationStack {
-            Button("Sign Out") {
-                Task {
-                    await authViewModel.signOut()
+            List {
+                
+                Text(authViewModel.user?.id.uuidString ?? "No user id")
+                    .font(.caption)
+                Button("Sign Out") {
+                    Task {
+                        await authViewModel.signOut()
+                    }
                 }
+                .buttonStyle(.bordered)
+                .tint(.red)
             }
-            .buttonStyle(.bordered)
-            .tint(.red)
             .navigationTitle("settings")
         }
     }
