@@ -50,7 +50,7 @@ struct AuthenticationScreen: View {
     
     var signupButton: some View {
         NavigationLink {
-            Text("signup")
+            RegistrationScreen(viewModel: viewModel)
                 .navigationBarBackButtonHidden()
                 .navigationTransition(.zoom(sourceID: "signupButtonLabel", in: transitionNamespace))
         } label: {
