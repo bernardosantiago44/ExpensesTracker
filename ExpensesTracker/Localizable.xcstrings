@@ -118,6 +118,24 @@
         }
       }
     },
+    "register" : {
+      "comment" : "Register label for new users.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create account"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrarse"
+          }
+        }
+      }
+    },
     "settings" : {
       "comment" : "Label for settings Tab.",
       "extractionState" : "manual",

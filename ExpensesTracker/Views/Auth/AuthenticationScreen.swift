@@ -30,6 +30,12 @@ struct AuthenticationScreen: View {
         }
         .padding(.horizontal)
         .navigationBarBackButtonHidden()
+        .alert("Error", isPresented: $viewModel.showErrorMessage) {
+            
+        } message: {
+            Text(viewModel.errorMessage)
+        }
+
     }
     
     var loginButton: some View {
@@ -50,7 +56,7 @@ struct AuthenticationScreen: View {
     
     var signupButton: some View {
         NavigationLink {
-            Text("signup")
+            RegistrationScreen(viewModel: viewModel)
                 .navigationBarBackButtonHidden()
                 .navigationTransition(.zoom(sourceID: "signupButtonLabel", in: transitionNamespace))
         } label: {

@@ -26,13 +26,11 @@ import Auth
     var user: User?
     
     init() {
-        print("DEBUG: Constructing AuthViewModel")
         setupAuthListener()
     }
     
     deinit {
         subscription?.remove()
-        print("Successfully removed subscription")
     }
     
     private func setupAuthListener() {
@@ -46,20 +44,42 @@ import Auth
     
     /// Authenticates the user using Supabase Auth
     ///
-     private func authenticateWith(email: String, password: String) async throws {
+    private func authenticateWith(email: String, password: String) async throws {
         try await SupabaseInstance.shared.client.auth.signIn(
             email: email,
             password: password)
     }
     
+    /// Creates a new user using the Supabase Auth
+    /// 
+    private func registerUser(email: String, password: String) async throws {
+        try await SupabaseInstance.shared.client.auth.signUp(
+            email: email,
+            password: password)
+        
+    }
+    
     /// Public func to pass the credentials to the Supabase Auth method.
     /// This function handles the errors thrown, if any, of the Supabase Authentication.
     ///
-     public func login() async {
+    public func login() async {
         self.isBusy = true
         defer { self.isBusy = false }
         do {
             try await self.authenticateWith(email: self.username, password: self.password)
+        } catch {
+            self.handleError(error: error)
+        }
+    }
+    
+    /// Public func to create a new user using the Supabase Auth,
+    /// and creating its corresponding tuple into the database.
+    ///
+    public func register() async {
+        self.isBusy = true
+        defer { self.isBusy = false }
+        do {
+            try await registerUser(email: self.username, password: self.password)
         } catch {
             self.handleError(error: error)
         }

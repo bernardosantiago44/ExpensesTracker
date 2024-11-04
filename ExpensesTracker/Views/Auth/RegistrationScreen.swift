@@ -1,21 +1,19 @@
 //
-//  LoginScreen.swift
+//  RegistrationScreen.swift
 //  ExpensesTracker
 //
-//  Created by Bernardo Santiago Marin on 28/10/24.
+//  Created by Bernardo Santiago Marin on 02/11/24.
 //
 
 import SwiftUI
-import AuthenticationServices
 
-struct LoginScreen: View {
+struct RegistrationScreen: View {
     @Bindable var viewModel: AuthenticationViewModel
-    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.settings) private var settings
     
     var body: some View {
         VStack {
-            Text("login")
+            Text("register")
                 .font(.title)
                 .fontWeight(.semibold)
                 .fontDesign(.rounded)
@@ -43,35 +41,23 @@ struct LoginScreen: View {
             .textContentType(.password)
             .textInputAutocapitalization(.never)
             
-            
-            LoginButton()
-            
-            Divider()
-            HStack {
-                SignInWithAppleButton(.signIn) { request in
-                    
-                } onCompletion: { result in
-                    
-                }
-                .signInWithAppleButtonStyle(.black)
-                .frame(maxHeight: 50)
-            }
-            
+            RegisterButton()
         }
         .padding(.horizontal)
     }
     
-    @ViewBuilder func LoginButton() -> some View {
+    @ViewBuilder private func RegisterButton() -> some View {
         if self.viewModel.isBusy {
             ProgressView()
         } else {
             Button(action: {
                 Task {
-                    await viewModel.login()
+                    await viewModel.register()
                 }
             }, label: {
-                Text("login")
-                    .frame(maxWidth: .infinity, alignment: .center)
+                Text("register")
+                    .frame(maxWidth: .infinity)
+                
             })
             .buttonStyle(PrimaryRoundedButtonStyle(color: settings.selectedAccentColor))
             .disabled(!viewModel.isValid)
@@ -80,6 +66,6 @@ struct LoginScreen: View {
 }
 
 #Preview {
-    @Previewable @State var viewModel = AuthenticationViewModel()
-    LoginScreen(viewModel: viewModel)
+    @Previewable @State var viewModel: AuthenticationViewModel = .init()
+    RegistrationScreen(viewModel: viewModel)
 }
