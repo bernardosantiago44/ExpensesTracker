@@ -10,6 +10,8 @@ import SwiftUI
 
 @Observable class SettingsViewModel {
     var selectedAccentColor: Color = .accentColor
+    
+    @ObservationIgnored let currencyCode = Locale.current.currency?.identifier ?? "USD"
 }
 
 // Color palette

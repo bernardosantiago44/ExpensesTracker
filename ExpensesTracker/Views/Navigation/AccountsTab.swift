@@ -13,7 +13,7 @@ struct AccountsTab: View {
     var body: some View {
         NavigationStack {
             List(viewModel.accounts) { account in
-                Text(account.data)
+                Text(account.description ?? "Unable to retrieve the data")
             }
             .fontDesign(.rounded)
             .navigationTitle("accounts")

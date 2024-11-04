@@ -16,12 +16,15 @@ import Foundation
             throw URLError(.userAuthenticationRequired)
         }
         
-        let _accounts: [Account] = try await supabase
+        let data = try await supabase
             .from("accounts")
             .select()
             .eq("user_id", value: user.id)
             .execute()
-            .value
+            .data
+        
+        let decoder = JSONDecoder()
+        let _accounts: [Account] = try decoder.decode([Account].self, from: data)
         
         DispatchQueue.main.async {
             self.accounts = _accounts
