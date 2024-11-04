@@ -59,12 +59,6 @@ struct LoginScreen: View {
             
         }
         .padding(.horizontal)
-        .alert(Text("Error"), isPresented: $viewModel.showErrorMessage) {
-            
-        } message: {
-            Text(viewModel.errorMessage)
-        }
-
     }
     
     @ViewBuilder func LoginButton() -> some View {
