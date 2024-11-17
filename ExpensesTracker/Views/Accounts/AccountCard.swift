@@ -15,7 +15,9 @@ struct AccountCard: View {
         GroupBox {
             VStack(alignment: .leading) {
                 Text(account.accountName)
+                    .font(.footnote)
                     .lineLimit(1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 Text(account.startBalance, format: .currency(code: settings.currencyCode))
                     .font(.headline)
                     .fontWeight(.semibold)

@@ -100,6 +100,24 @@
         }
       }
     },
+    "new_account" : {
+      "comment" : "Label for creating a new account.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add account"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva cuenta"
+          }
+        }
+      }
+    },
     "password" : {
       "comment" : "Password label for text field.",
       "extractionState" : "manual",

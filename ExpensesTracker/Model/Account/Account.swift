@@ -78,6 +78,17 @@ extension Account {
                 accountType: .cash)
     }()
     
+    static let secondCashAccount: Account = {
+        Account(id: 31,
+                editedAt: Date(timeIntervalSince1970: 1730490527),
+                userId: .init(),
+                accountName: "Cash Account 2",
+                description: "A sample cash account, suitable for testing",
+                startBalance: 17258,
+                accountLimit: nil,
+                accountType: .cash)
+    }()
+    
     static let sampleCreditCardAccount: Account = {
         Account(id: 33,
                 editedAt: Date(timeIntervalSince1970: 1730450527),
@@ -98,6 +109,40 @@ extension Account {
                 startBalance: 10000,
                 accountLimit: nil,
                 accountType: .goals
-                )
+        )
     }()
+    
+    static let sampleLoanAccount: Account = {
+        Account(id: 35,
+                editedAt: Date(timeIntervalSince1970: 1730490527),
+                userId: .init(),
+                accountName: "Loan Account",
+                description: "A sample loan account, suitable for testing",
+                startBalance: 10000,
+                accountLimit: nil,
+                accountType: .loan)
+    }()
+    
+    static let sampleInvestment: Account = {
+        Account(id: 36,
+                editedAt: Date(timeIntervalSince1970: 1730350527),
+                userId: .init(),
+                accountName: "Investments Account",
+                description: "A sample investments account, suitable for testing",
+                startBalance: 10000,
+                accountLimit: nil,
+                accountType: .investment)
+    }()
+    
+    static let otherCreditCard: Account = {
+       Account(id: 37,
+                editedAt: Date(timeIntervalSince1970: 1730490527),
+                userId: .init(),
+                accountName: "Other Credit Card",
+                description: "A sample credit card account, suitable for testing",
+                startBalance: 10000,
+                accountLimit: nil,
+                accountType: .creditCard)
+    }()
+    
 }

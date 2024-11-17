@@ -12,14 +12,15 @@ struct AccountsTab: View {
     
     var body: some View {
         NavigationStack {
-            List(viewModel.accounts) { account in
-                Text(account.description ?? "Unable to retrieve the data")
+            ScrollView {
+                AccountsHeaderList(accounts: $viewModel.accounts)
+                    .fontDesign(.rounded)
+                    .navigationTitle("accounts")
             }
-            .fontDesign(.rounded)
-            .navigationTitle("accounts")
-            .refreshable {
+            .task {
                 await viewModel.getUserAccounts()
             }
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
