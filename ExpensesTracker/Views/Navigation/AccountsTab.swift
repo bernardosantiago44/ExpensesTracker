@@ -9,17 +9,24 @@ import SwiftUI
 
 struct AccountsTab: View {
     @State private var viewModel = AccountsViewModel()
+    @StateObject var sheetCoordinator = SheetCoordinator<AccountSheet>()
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                AccountsHeaderList(accounts: $viewModel.accounts)
+                AccountsHeaderList(viewModel: self.viewModel, sheetCoordinator: sheetCoordinator)
                     .fontDesign(.rounded)
                     .navigationTitle("accounts")
             }
             .task {
                 await viewModel.getUserAccounts()
             }
+            .alert(isPresented: .constant(viewModel.operationError != nil), error: viewModel.operationError, actions: {
+                Button("OK", role: .cancel) {
+                    viewModel.dismissError()
+                }
+            })
+            .sheetCoordinator(self.sheetCoordinator)
             .navigationBarTitleDisplayMode(.inline)
         }
     }

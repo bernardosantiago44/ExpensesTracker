@@ -9,11 +9,13 @@ import Foundation
 
 @Observable class AccountsViewModel {
     var accounts: [Account] = []
+    var operationError: DatabaseError?
+    
     @ObservationIgnored private var supabase = SupabaseInstance.shared.client
     
     private func fetchAccounts() async throws {
         guard let user = supabase.auth.currentUser else {
-            throw URLError(.userAuthenticationRequired)
+            throw DatabaseError.userAuthenticationRequired
         }
         
         let data = try await supabase
@@ -35,7 +37,27 @@ import Foundation
         do {
             try await self.fetchAccounts()
         } catch {
-            print(error.localizedDescription)
+            self.handleError(error as? DatabaseError ?? DatabaseError.unexpectedError)
         }
+    }
+    
+    public func getUserID() -> UUID? {
+        guard let user = supabase.auth.currentUser else {
+            self.handleError(DatabaseError.userAuthenticationRequired)
+            return nil
+        }
+        return user.id
+    }
+    
+    // MARK: - Error Handling
+    private func handleError(_ error: DatabaseError) {
+        DispatchQueue.main.async {
+            self.operationError = error
+        }
+    }
+    
+    public func dismissError() {
+        self.operationError = nil
+        
     }
 }

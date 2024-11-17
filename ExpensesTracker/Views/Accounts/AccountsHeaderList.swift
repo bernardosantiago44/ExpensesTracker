@@ -10,7 +10,8 @@ import SwiftUI
 struct AccountsHeaderList: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    @Binding var accounts: [Account]
+    @Bindable var viewModel: AccountsViewModel
+    @ObservedObject var sheetCoordinator: SheetCoordinator<AccountSheet>
     
     private var gridItems: [GridItem] {
         if dynamicTypeSize < .xxxLarge || horizontalSizeClass == .regular {
@@ -26,8 +27,8 @@ struct AccountsHeaderList: View {
     var body: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: gridItems, spacing: 8) {
-                ForEach(accounts) { account in
-                    AccountCard(account: account)
+                ForEach($viewModel.accounts) { account in
+                    AccountCard(account: account.wrappedValue)
                         .frame(width: cardWidth())
                 }
                 CreateAccountButton
@@ -59,7 +60,8 @@ struct AccountsHeaderList: View {
     
     private var CreateAccountButton: some View {
         Button {
-            
+            guard let id = viewModel.getUserID() else { return }
+            sheetCoordinator.presentSheet(.addAccount(self.viewModel, id))
         } label: {
             GroupBox {
                 Image(systemName: "plus.circle.fill")
@@ -72,17 +74,4 @@ struct AccountsHeaderList: View {
             .frame(width: cardWidth())
         }
     }
-}
-
-#Preview {
-    @Previewable @State var accounts = [Account.sampleCashAccount,
-                                        Account.secondCashAccount,
-                                        Account.sampleCreditCardAccount,
-                                        Account.sampleSavingsAccount,
-                                        Account.sampleInvestment,
-                                        Account.sampleLoanAccount,
-                                        Account.otherCreditCard
-    ]
-    AccountsHeaderList(accounts: $accounts)
-//        .environment(\.dynamicTypeSize, .medium)
 }

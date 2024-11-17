@@ -9,13 +9,13 @@ import Foundation
 
 struct Account: Identifiable, Codable {
     let id: Int
-    let editedAt: Date
+    var editedAt: Date
     let userId: UUID
-    let accountName: String
-    let description: String?
-    let startBalance: Double
-    let accountLimit: Double?
-    let accountType: AccountType
+    var accountName: String
+    var description: String?
+    var startBalance: Double
+    var accountLimit: Double?
+    var accountType: AccountType
     
     enum CodingKeys: String, CodingKey {
         case id          = "id"
@@ -63,6 +63,10 @@ struct Account: Identifiable, Codable {
         self.startBalance = startBalance
         self.accountLimit = accountLimit
         self.accountType = accountType
+    }
+    
+    init(userId: UUID) {
+        self.init(id: .random(in: 0...10000), editedAt: .now, userId: userId, accountName: "", description: "", startBalance: 0.0, accountLimit: nil, accountType: .cash)
     }
 }
 

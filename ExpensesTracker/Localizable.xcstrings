@@ -1,6 +1,24 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "account_name" : {
+      "comment" : "The name of the associated account.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account name"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuenta"
+          }
+        }
+      }
+    },
     "accounts" : {
       "comment" : "Label for accounts Tab.",
       "extractionState" : "manual",
@@ -202,6 +220,42 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registrarse"
+          }
+        }
+      }
+    },
+    "unexpected_error" : {
+      "comment" : "Unexpected error.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unexpected error has occured."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha surgido un error inesperado."
+          }
+        }
+      }
+    },
+    "user_auth_required" : {
+      "comment" : "User authentication is required to finish operation.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please sign-in to use this feature."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es necesario iniciar sesión para usar esta herramienta."
           }
         }
       }
