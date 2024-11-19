@@ -1,6 +1,24 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "account_balance" : {
+      "comment" : "Label for the account's initial balance.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Initial balance"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saldo inicial"
+          }
+        }
+      }
+    },
     "account_name" : {
       "comment" : "The name of the associated account.",
       "extractionState" : "manual",
@@ -19,6 +37,24 @@
         }
       }
     },
+    "account_type" : {
+      "comment" : "The type of account this represents.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account type"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo de cuenta"
+          }
+        }
+      }
+    },
     "accounts" : {
       "comment" : "Label for accounts Tab.",
       "extractionState" : "manual",
@@ -33,6 +69,96 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cuentas"
+          }
+        }
+      }
+    },
+    "cancel" : {
+      "comment" : "Cancelation action label.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
+      }
+    },
+    "cash" : {
+      "comment" : "Cash account type label.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cash"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efectivo"
+          }
+        }
+      }
+    },
+    "create_account" : {
+      "comment" : "Button label for finishing account creation.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add account"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agregar cuenta"
+          }
+        }
+      }
+    },
+    "credit_card" : {
+      "comment" : "Credit card account label.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credit Card"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarjeta de crédito"
+          }
+        }
+      }
+    },
+    "debit_card" : {
+      "comment" : "Debit card account label.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debit card"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarjeta de débito"
           }
         }
       }
@@ -71,6 +197,24 @@
         }
       }
     },
+    "goals" : {
+      "comment" : "Savings account label.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goals"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metas"
+          }
+        }
+      }
+    },
     "hello" : {
       "comment" : "Hello label in the authentication screen.",
       "extractionState" : "manual",
@@ -90,12 +234,49 @@
       }
     },
     "Hello, %@!" : {
-      "extractionState" : "stale",
+      "comment" : "Hello ",
+      "extractionState" : "manual",
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hola, %@!"
+          }
+        }
+      }
+    },
+    "investment" : {
+      "comment" : "Investment account type label.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investment"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inversión"
+          }
+        }
+      }
+    },
+    "loan" : {
+      "comment" : "Loan account type label.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loan"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crédito"
           }
         }
       }
@@ -114,6 +295,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Iniciar sesión"
+          }
+        }
+      }
+    },
+    "mortgage" : {
+      "comment" : "Mortgage account type label.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mortgage"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hipoteca"
           }
         }
       }
@@ -224,20 +423,20 @@
         }
       }
     },
-    "unexpected_error" : {
+    "unexpected_error: %@" : {
       "comment" : "Unexpected error.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "An unexpected error has occured."
+            "value" : "An unexpected error has occurred: %@"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ha surgido un error inesperado."
+            "value" : "Ha surgido un error inesperado: %@"
           }
         }
       }

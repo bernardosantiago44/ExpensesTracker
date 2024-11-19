@@ -69,4 +69,10 @@ struct StringValidatorTests {
         }
     }
     
+    @Test func testEmptyString() {
+        #expect(" Bernardo Santiago ".isValidName())
+        #expect("  ".isValidName() == false)
+        #expect("    A very very long name for an account can not be valid".isValidName() == false)
+    }
+    
 }

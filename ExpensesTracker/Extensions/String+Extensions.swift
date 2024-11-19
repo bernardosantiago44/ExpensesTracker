@@ -13,4 +13,15 @@ extension String {
         let range = NSRange(location: 0, length: self.utf16.count)
         return regex.firstMatch(in: self, range: range) != nil
     }
+    
+    func isValidName() -> Bool {
+        let trimmed = self.trimmingCharacters(in: .whitespacesAndNewlines).trimmingCharacters(in: .punctuationCharacters)
+        
+        return trimmed.isEmpty && trimmed.count < 25
+    }
+    
+    func tidy() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+                   .folding(options: .diacriticInsensitive, locale: .current)
+    }
 }

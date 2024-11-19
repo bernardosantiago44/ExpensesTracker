@@ -35,7 +35,7 @@ struct AccountsHeaderList: View {
             }
             .scrollTargetLayout()
         }
-        .contentMargins(.horizontal, 16, for: .scrollContent)
+        .contentMargins(.horizontal, 24, for: .scrollContent)
         .scrollTargetBehavior(.viewAligned)
         .defaultScrollAnchor(.leading)
     }
@@ -49,13 +49,13 @@ struct AccountsHeaderList: View {
         
         if (horizontalSizeClass == .regular) {
             let columnsPerPage = dynamicTypeSize < .xxxLarge ? round(width / 250) : round(width / 350)
-            return width / columnsPerPage - 16
+            return width / columnsPerPage - 24
         }
         
         if dynamicTypeSize <= .xxxLarge {
-            return width / 2 - 20
+            return width / 2 - 28
         }
-        return width - 32
+        return width - 40
     }
     
     private var CreateAccountButton: some View {
@@ -72,6 +72,7 @@ struct AccountsHeaderList: View {
                     .font(.caption)
             }
             .frame(width: cardWidth())
+            .frame(minHeight: 130)
         }
     }
 }

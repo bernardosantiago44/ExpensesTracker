@@ -68,6 +68,11 @@ struct Account: Identifiable, Codable {
     init(userId: UUID) {
         self.init(id: .random(in: 0...10000), editedAt: .now, userId: userId, accountName: "", description: "", startBalance: 0.0, accountLimit: nil, accountType: .cash)
     }
+    
+    // Property methods
+    func isValid() -> Bool {
+        return accountName.tidy().isEmpty == false
+    }
 }
 
 extension Account {

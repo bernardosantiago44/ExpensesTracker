@@ -37,7 +37,7 @@ protocol SheetEnum: Identifiable {
     func view(coordinator: SheetCoordinator<Self>) -> Body
 }
 
-internal enum AccountSheet: Identifiable, SheetEnum {
+internal enum AccountSheet: SheetEnum {
     case addAccount(AccountsViewModel, UUID)
     case editAccount
     
@@ -53,7 +53,7 @@ internal enum AccountSheet: Identifiable, SheetEnum {
     @ViewBuilder
     func view(coordinator: SheetCoordinator<AccountSheet>) -> some View {
         switch self {
-        case .addAccount(var viewModel, let id):
+        case .addAccount(let viewModel, let id):
             NewAccountForm(viewModel: viewModel, userId: id)
         
         case .editAccount:
