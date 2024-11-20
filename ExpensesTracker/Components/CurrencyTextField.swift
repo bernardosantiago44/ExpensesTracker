@@ -336,7 +336,7 @@ fileprivate extension String {
     
 }
 
-fileprivate extension Double {
+extension Double {
     func currencyFormat(decimalPlaces: Int = 2, forceShowDecimalPlaces: Bool = false, currencySymbol: String? = nil) -> String? {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
