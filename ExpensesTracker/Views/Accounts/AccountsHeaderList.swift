@@ -28,8 +28,12 @@ struct AccountsHeaderList: View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: gridItems, spacing: 8) {
                 ForEach($viewModel.accounts) { account in
-                    AccountCard(account: account.wrappedValue)
-                        .frame(width: cardWidth())
+                    NavigationLink(destination: AccountDetailView(account: account)) {
+                        AccountCard(account: account.wrappedValue)
+                            .frame(width: cardWidth())
+                    }
+                    .tint(.primary)
+                    .id(account.id)
                 }
                 CreateAccountButton
             }

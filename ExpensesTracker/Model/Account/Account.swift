@@ -75,6 +75,12 @@ struct Account: Identifiable, Codable {
     }
 }
 
+extension Account: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+}
+
 extension Account {
     static let sampleCashAccount: Account = {
         Account(id: 32,
